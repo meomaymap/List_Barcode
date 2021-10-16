@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<audio id="myAudio1" style="display:none">
+  <source src="data:audio/mpeg;base64,/+MYxAAEaAIEeUAQAgBgNgP/////KQQ/////Lvrg+lcWYHgtjadzsbTq+yREu495tq9c6v/7vt/of7mna9v6/btUnU17Jun9/+MYxCkT26KW+YGBAj9v6vUh+zab//v/96C3/pu6H+pv//r/ycIIP4pcWWTRBBBAMXgNdbRaABQAAABRWKwgjQVX0ECmrb///+MYxBQSM0sWWYI4A++Z/////////////0rOZ3MP//7H44QEgxgdvRVMXHZseL//540B4JAvMPEgaA4/0nHjxLhRgAoAYAgA/+MYxAYIAAJfGYEQAMAJAIAQMAwX936/q/tWtv/2f/+v//6v/+7qTEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" />
+
+</audio>
+<audio id="myAudio2" style="display:none">
+  <source src="data:audio/mpeg;base64,/+MYxAAEaAIEeUAQAgBgNgP/////KQQ/////Lvrg+lcWYHgtjadzsbTq+yREu495tq9c6v/7vt/of7mna9v6/btUnU17Jun9/+MYxCkT26KW+YGBAj9v6vUh+zab//v/96C3/pu6H+pv//r/ycIIP4pcWWTRBBBAMXgNdbRaABQAAABRWKwgjQVX0ECmrb///+MYxBQSM0sWWYI4A++Z/////////////0rOZ3MP//7H44QEgxgdvRVMXHZseL//540B4JAvMPEgaA4/0nHjxLhRgAoAYAgA/+MYxAYIAAJfGYEQAMAJAIAQMAwX936/q/tWtv/2f/+v//6v/+7qTEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" />
+
+</audio>
+<input type="text" size="40">
+<input id="barcode" type="text" size="40" onkeypress="myFunction(event)">
+
+<div id="demo"></div>
+
+<script>
+var InputKey = document.getElementById("barcode");
+var barcode = [];
+var value="";
+function myFunction(event) {
+  var x = event.which || event.keyCode;
+  if (x==13) {
+  	//barcode.filter(InputKey.value);
+    //alert(barcode.length);
+    value = InputKey.value;
+    timthay = barcode.findIndex(checkTrung);
+
+    if (timthay == -1) {
+    var demo = document.getElementById("demo")
+    
+    var p = document.createElement("p");
+    p.innerHTML = InputKey.value;
+    demo.appendChild(p);
+    
+    barcode.push(InputKey.value);
+    
+    document.getElementById("myAudio2").play();
+    } else {
+      document.getElementById("myAudio1").play();
+    }
+    InputKey.select();
+  } 
+}
+
+function checkTrung(f) {
+  return f == value;
+}
+</script>
+
+</body>
+</html>
