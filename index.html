@@ -19,6 +19,7 @@
 var InputKey = document.getElementById("barcode");
 var barcode = [];
 var value="";
+var loaiAudio="";
 function myFunction(event) {
   var x = event.which || event.keyCode;
   if (x==13) {
@@ -30,7 +31,7 @@ function myFunction(event) {
     if (timthay == -1) {
     
     var format = document.getElementById("format")
-    alert(Check(format.value,InputKey.value));
+    //alert(Check(format.value,InputKey.value));
     
     if (Check(format.value,InputKey.value) == 1) {
     	var demo = document.getElementById("demo")
@@ -41,23 +42,30 @@ function myFunction(event) {
     
     	barcode.push(InputKey.value);
     
-    	document.getElementById("myAudio2").play();
+    	//document.getElementById("myAudio2").play();
+        loaiAudio= "myAudio2";
     	} else {
-      		document.getElementById("myAudio1").play();
+        	loaiAudio= "myAudio1";
+      		
     	}
     	InputKey.select();
-     }
+    } else {
+    	loaiAudio= "myAudio1";
+    }
+     
+     document.getElementById(loaiAudio).play();
   } 
 }
 
 function Check(f,s) {
-	var chapnhan = 0;
+	var chapnhan = 1;
     var arr1 = f.split("}");
     var l = parseInt(arr1[0].substring(1,arr1[0].length));
     
     if (s.length == l) {
     	var arr2 = arr1[1].split("]");
-    	for (i=0;i<arr2.length;i++) {
+        //alert(arr2.length);
+    	for (i=0;i<arr2.length-1;i++) {
     		arr2[i] = arr2[i].substring(1,arr2[i].length);
         	if (arr2[i].substring(0,1)=="/") {
         		var loaibo = arr2[i].substring(1,arr2[i].length)
@@ -66,10 +74,29 @@ function Check(f,s) {
             		chapnhan = 0;
                 	break;
             	}
-        	}
+        	} else {
+            	if (arr2[i].substring(0,1)=="*") {
+            		var stt = parseInt(arr2[i].substring(1,arr2[i].length));
+                	s = s.substring(stt,s.length);
+            	} else {
+            		timthay = s.indexOf(arr2[i]);
+                	if (timthay==-1) {
+                		//alert(s)
+                    	chapnhan = 0;
+                		break;
+                	} else {
+                		s = s.substring(arr2[i].length,s.length);
+                    	//alert(s);
+                        //alert(i);
+                	}
+            	}
+            }
             
     	}
+        
+        //alert(stt);
     }
+    
     return chapnhan;
 }
 
@@ -80,5 +107,6 @@ function checkTrung(f) {
 
 </body>
 </html>
+
 
 
