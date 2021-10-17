@@ -10,7 +10,7 @@
   <source src="data:audio/mpeg;base64,/+MYxAAEaAIEeUAQAgBgNgP/////KQQ/////Lvrg+lcWYHgtjadzsbTq+yREu495tq9c6v/7vt/of7mna9v6/btUnU17Jun9/+MYxCkT26KW+YGBAj9v6vUh+zab//v/96C3/pu6H+pv//r/ycIIP4pcWWTRBBBAMXgNdbRaABQAAABRWKwgjQVX0ECmrb///+MYxBQSM0sWWYI4A++Z/////////////0rOZ3MP//7H44QEgxgdvRVMXHZseL//540B4JAvMPEgaA4/0nHjxLhRgAoAYAgA/+MYxAYIAAJfGYEQAMAJAIAQMAwX936/q/tWtv/2f/+v//6v/+7qTEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" />
 
 </audio>
-<input type="text" size="40">
+<input id="format" type="text" size="40">
 <input id="barcode" type="text" size="40" onkeypress="myFunction(event)">
 
 <div id="demo"></div>
@@ -28,20 +28,49 @@ function myFunction(event) {
     timthay = barcode.findIndex(checkTrung);
 
     if (timthay == -1) {
-    var demo = document.getElementById("demo")
     
-    var p = document.createElement("p");
-    p.innerHTML = InputKey.value;
-    demo.appendChild(p);
+    var format = document.getElementById("format")
+    alert(Check(format.value,InputKey.value));
     
-    barcode.push(InputKey.value);
+    if (Check(format.value,InputKey.value) == 1) {
+    	var demo = document.getElementById("demo")
     
-    document.getElementById("myAudio2").play();
-    } else {
-      document.getElementById("myAudio1").play();
-    }
-    InputKey.select();
+    	var p = document.createElement("p");
+    	p.innerHTML = InputKey.value;
+    	demo.appendChild(p);
+    
+    	barcode.push(InputKey.value);
+    
+    	document.getElementById("myAudio2").play();
+    	} else {
+      		document.getElementById("myAudio1").play();
+    	}
+    	InputKey.select();
+     }
   } 
+}
+
+function Check(f,s) {
+	var chapnhan = 0;
+    var arr1 = f.split("}");
+    var l = parseInt(arr1[0].substring(1,arr1[0].length));
+    
+    if (s.length == l) {
+    	var arr2 = arr1[1].split("]");
+    	for (i=0;i<arr2.length;i++) {
+    		arr2[i] = arr2[i].substring(1,arr2[i].length);
+        	if (arr2[i].substring(0,1)=="/") {
+        		var loaibo = arr2[i].substring(1,arr2[i].length)
+            	timthay = s.indexOf(loaibo)
+            	if (timthay>-1) {
+            		chapnhan = 0;
+                	break;
+            	}
+        	}
+            
+    	}
+    }
+    return chapnhan;
 }
 
 function checkTrung(f) {
@@ -51,3 +80,5 @@ function checkTrung(f) {
 
 </body>
 </html>
+
+
