@@ -14,10 +14,20 @@
   width: 100%; /* Full width */
 }
 
+.note{
+   width: 80%;
+   text-align: left;
+}
+
 #barcode {
 	width: 80%;
    font-size: 40px;
    text-align: center;
+}
+
+input {
+	text-align: center;
+    font-weight: bold;
 }
 
 #demo {
@@ -49,12 +59,17 @@
 Khai báo nhận dạng
 <input id="format" type="text" size="40" value="{13}[/123][C|E|P|R][*10][VN]">
 <input id="HienScan" type="button" value="Bắt đầu Scan" onclick="Hienthi(event)">
-<p>{13} : Chiều dài của chuỗi barcode</p>
-<p>{*} : không quan tâm chiều dài của chuỗi barcode</p>
-<p>[/123] : Không nhận chuỗi barcode nếu có chứa chuỗi "123"; nếu không sử dụng có thể xoá</p>
-<p>[C] : Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" tại vị trí theo thứ tự nhóm []</p>
-<p>[C|E] :Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" hay "E" hay  tại vị trí theo thứ tự nhóm []</p>
-<p>[*10] :Chỉ chấp nhận chuỗi barcode nếu có chứa 10 ký tự bất kỳ tại vị trí theo thứ tự nhóm []</p>
+<div class="note">
+<p style="font-weight: bold;">{} : Khao báo chiều dài của chuỗi barcode; không được xoá</p>
+<p>&emsp;&emsp;{13} : Chiều dài của chuỗi barcode</p>
+<p>&emsp;&emsp;{*}  : không quan tâm chiều dài của chuỗi barcode</p>
+<p style="font-weight: bold;">[/] : Không nhận chuỗi barcode; Nếu xuất hiện chuỗi sau dấu "/" thì chuỗi sẽ không được chấp thuận; Có thể xoá nếu không sử dụng</p>
+<p>&emsp;&emsp;[/123] : Không nhận chuỗi barcode nếu có chứa chuỗi "123"</p>
+<p style="font-weight: bold;">[] : Chuỗi được chấp nhận; Có thể xoá nếu không sử dụng</p>
+<p>&emsp;&emsp;[C] : Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" tại vị trí theo thứ tự nhóm []</p>
+<p>&emsp;&emsp;[C|E] :Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" hay "E" ... được ngăn cách bởi ký tự "|" tại vị trí theo thứ tự nhóm []</p>
+<p>&emsp;&emsp;[*10] :Chỉ chấp nhận chuỗi barcode nếu có chứa 10 ký tự bất kỳ tại vị trí theo thứ tự nhóm []</p>
+</div>
 </div>
 
 
