@@ -85,9 +85,11 @@ function myFunction(event) {
     	loaiAudio= "myAudio3";
     }
      
-     document.getElementById(loaiAudio).play();
-     demo.scrollTop = demo.scrollHeight;
+     //ALERT(1);
      InputKey.select();
+     document.getElementById(loaiAudio).play();
+     //demo.scrollTop = demo.scrollHeight;
+     
   } 
   
 }
@@ -123,10 +125,12 @@ function Check(f,s) {
                         	break;
                         }
                     }
+                    
                     if (timthay1==-1) {
                     	chapnhan = 0;
                 		break;
                     }
+                    
             		/*
                     timthay = s.indexOf(arr2[i]);
                 	if (timthay==-1) {
