@@ -41,7 +41,7 @@
 
 </audio>
 Khai báo nhận dạng
-<input id="format" type="text" size="40" value="{13}[/123][*4][g13]">
+<input id="format" type="text" size="40" value="{13}[/123][C|E|P|R][*10][VN]">
 <br><br>
 <input id="barcode" type="text" size="40" onkeypress="myFunction(event)">
 </div>
@@ -115,7 +115,20 @@ function Check(f,s) {
             		var stt = parseInt(arr2[i].substring(1,arr2[i].length));
                 	s = s.substring(stt,s.length);
             	} else {
-            		timthay = s.indexOf(arr2[i]);
+                	var arr3 = arr2[i].split("|");
+                    for (j=0; j<arr3.length; j++) {
+                    	var timthay1 = s.indexOf(arr3[j]);
+                        if (timthay1>-1) {
+                        	s = s.substring(arr3[j].length,s.length);
+                        	break;
+                        }
+                    }
+                    if (timthay1==-1) {
+                    	chapnhan = 0;
+                		break;
+                    }
+            		/*
+                    timthay = s.indexOf(arr2[i]);
                 	if (timthay==-1) {
                 		//alert(s)
                     	chapnhan = 0;
@@ -125,6 +138,7 @@ function Check(f,s) {
                     	//alert(s);
                         //alert(i);
                 	}
+                    */
             	}
             }
             
@@ -145,4 +159,3 @@ function checkTrung(f) {
 
 </body>
 </html>
-
