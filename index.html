@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>-->
+<script src="https://rawgit.com/SheetJS/js-xlsx/master/dist/xlsx.full.min.js"></script>
 <style>
 .header {
   overflow: hidden;
@@ -42,6 +47,7 @@
 </audio>
 Khai báo nhận dạng
 <input id="format" type="text" size="40" value="{13}[/123][C|E|P|R][*10][VN]">
+<input id="download" type="button" value="Xuất excel" onclick="ExportData()">
 <br><br>
 <input id="barcode" type="text" size="40" onkeypress="myFunction(event)">
 </div>
@@ -160,6 +166,28 @@ function Check(f,s) {
 function checkTrung(f) {
   return f == value;
 }
+
+  function ExportData() { 
+//      var data = [
+//    {"name":"John", "city": "Seattle"},
+//    {"name":"Mike", "city": "Los Angeles"},
+//    {"name":"Zach", "city": "New York"}
+//];
+
+/* this line is only needed if you are not adding a script tag reference */
+if(typeof XLSX == 'undefined') XLSX = require('xlsx');
+
+/* make the worksheet */
+var ws = XLSX.utils.json_to_sheet(barcode);
+
+/* add to workbook */
+var wb = XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb, ws, "People");
+
+/* generate an XLSX file */
+XLSX.writeFile(wb, "sheetjs.xlsx");
+      
+  }
 </script>
 
 </body>
