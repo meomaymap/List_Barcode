@@ -25,7 +25,7 @@
    position: fixed;
    width: 100%;
    height: 60%;
-   top: 100px;
+   top: 120px;
    text-align: center;
 }
 </style>
@@ -33,6 +33,7 @@
 <body>
 
 <div align="center" class="header">
+<div id="Khaibao">
 <audio id="myAudio1" style="display:none">
   <source src="data:audio/mpeg;base64,/+MYxAAEaAIEeUAQAgBgNgP/////KQQ/////Lvrg+lcWYHgtjadzsbTq+yREu495tq9c6v/7vt/of7mna9v6/btUnU17Jun9/+MYxCkT26KW+YGBAj9v6vUh+zab//v/96C3/pu6H+pv//r/ycIIP4pcWWTRBBBAMXgNdbRaABQAAABRWKwgjQVX0ECmrb///+MYxBQSM0sWWYI4A++Z/////////////0rOZ3MP//7H44QEgxgdvRVMXHZseL//540B4JAvMPEgaA4/0nHjxLhRgAoAYAgA/+MYxAYIAAJfGYEQAMAJAIAQMAwX936/q/tWtv/2f/+v//6v/+7qTEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" />
 
@@ -47,13 +48,27 @@
 </audio>
 Khai báo nhận dạng
 <input id="format" type="text" size="40" value="{13}[/123][C|E|P|R][*10][VN]">
-<input id="download" type="button" value="Xuất excel" onclick="ExportData()">
-<br><br>
-<input id="barcode" type="text" size="40" onkeypress="myFunction(event)">
+<input id="HienScan" type="button" value="Bắt đầu Scan" onclick="Hienthi(event)">
 </div>
-<div id="demo" align="center"></div>
+
+<p>{13} : Chiều dài của chuỗi barcode</p>
+<p>{*} : không quan tâm chiều dài của chuỗi barcode</p>
+<p>[/123] : Không nhận chuỗi barcode nếu có chứa chuỗi "123"; nếu không sử dụng có thể xoá</p>
+<p>[C] : Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" tại vị trí theo thứ tự nhóm []</p>
+<p>[C|E] :Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" hay "E" hay  tại vị trí theo thứ tự nhóm []</p>
+<p>[*10] :Chỉ chấp nhận chuỗi barcode nếu có chứa 10 ký tự bất kỳ tại vị trí theo thứ tự nhóm []</p>
+
+<div id="NhapBarcode" style="display:none">
+<input id="barcode" type="text" size="40" onkeypress="myFunction(event)">
+<br><br>
+<input id="HienKhaibao" type="button" value="Khai báo nhận dạng" onclick="Hienthi(event)">
+<input id="download" type="button" value="Xuất excel" onclick="ExportData()">
+</div>
+</div>
+<div id="demo" align="center" style="display:none"></div>
 
 <script>
+
 var InputKey = document.getElementById("barcode");
 var barcode = [];
 var value="";
@@ -187,6 +202,27 @@ XLSX.utils.book_append_sheet(wb, ws, "People");
 /* generate an XLSX file */
 XLSX.writeFile(wb, "sheetjs.xlsx");
       
+  }
+  
+  function Hienthi(event) {
+  	//alert(event.target.id);
+    if (event.target.id=="HienScan") {
+       document.getElementById("Khaibao").style.display= "none";
+       document.getElementById("NhapBarcode").style.display= "block";
+       document.getElementById("demo").style.display= "block";
+    }
+    
+    if (event.target.id=="HienKhaibao") {
+       document.getElementById("Khaibao").style.display= "block";
+       document.getElementById("NhapBarcode").style.display= "none";
+       document.getElementById("demo").style.display= "none";
+       
+    }
+  	//document.getElementById("NhapBarcode").style.diplay = v1;
+    //document.getElementById("demo").style.diplay = v2;
+    //document.getElementById("Khaibao").style.diplay = v3;
+
+    
   }
 </script>
 
