@@ -49,15 +49,16 @@
 Khai báo nhận dạng
 <input id="format" type="text" size="40" value="{13}[/123][C|E|P|R][*10][VN]">
 <input id="HienScan" type="button" value="Bắt đầu Scan" onclick="Hienthi(event)">
-</div>
-
 <p>{13} : Chiều dài của chuỗi barcode</p>
 <p>{*} : không quan tâm chiều dài của chuỗi barcode</p>
 <p>[/123] : Không nhận chuỗi barcode nếu có chứa chuỗi "123"; nếu không sử dụng có thể xoá</p>
 <p>[C] : Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" tại vị trí theo thứ tự nhóm []</p>
 <p>[C|E] :Chỉ chấp nhận chuỗi barcode nếu có chứa ký tự "C" hay "E" hay  tại vị trí theo thứ tự nhóm []</p>
 <p>[*10] :Chỉ chấp nhận chuỗi barcode nếu có chứa 10 ký tự bất kỳ tại vị trí theo thứ tự nhóm []</p>
+</div>
 
+
+<br>
 <div id="NhapBarcode" style="display:none">
 <input id="barcode" type="text" size="40" onkeypress="myFunction(event)">
 <br><br>
